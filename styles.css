@@ -1,0 +1,109 @@
+@font-face {
+    font-family:futura-pt;
+    src:url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/l?subset_id=2&fvd=n4&v=3) format("woff2"),
+    url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/d?subset_id=2&fvd=n4&v=3) format("woff"),
+    url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/a?subset_id=2&fvd=n4&v=3) format("opentype");
+    font-weight:400;
+    font-style:normal;
+    font-stretch:normal;
+    font-display:auto;
+}
+
+body {
+    box-sizing: box;
+    margin: 0;
+    padding: 0;
+    
+}
+html { 
+    background: url(images/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: black;
+  }
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    position: sticky;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+}
+.page_content{
+    border: red 1px solid;
+    border-radius: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+
+.inputs {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 134px 1fr;
+}
+
+#signature {
+    background-color: white;
+    border-radius: 5px;
+}
+
+#read_signature{
+    resize: none;
+    width:700px;
+    border-radius: 5px;
+    padding: 12px 20px;
+}
+
+.label {
+    color: red;
+    font-family: futura-pt;
+}
+
+input[type=text], input[type=tel], input[type=url]{
+    min-width: 600px;
+    width: 100%;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 80%;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.btn {
+    font-size: 1rem;
+    background-image: linear-gradient(to top,red 0%, #fe5199 100%);
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    margin-top: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.35s;
+    outline: none;
+    margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1000px){
+    .main {
+        padding-top: 10px;
+        position: sticky;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+}

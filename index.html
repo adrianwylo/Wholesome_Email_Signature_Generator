@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css">
+        <title>Actual tester now</title>
+    </head>
+    <body>
+        <main>
+            <div class="main">
+                <div class="page_content">
+                    <p id="signature" style="padding-left: 10px;"></p>
+                    <textarea id="read_signature" style="display: none;"></textarea>
+                    <form>
+                        <div class="inputs">
+                            <label for="name" class="label">Name</label>
+                            <input type="text" name="name" class = "input" id="name" placeholder="Who are you?" required />
+                            
+                            <label for="title" class="label">Title</label>
+                            <input type="text" name="title"  class = "input" placeholder="What do you do?" required />
+                            
+                            <label for="phone" class="label">Phone #</label>
+                            <input type="tel" name="phone"  class = "input" placeholder="Phone Number?" required />
+                            
+                            <label for="meeting_link" style="display:none;" id="option" class="label">Meeting&nbsp;Link&nbsp;&nbsp;</label>
+                            <input type="url" style="display:none;" name="meeting_link" id="option1" class = "input" placeholder="How do we meet you?"  pattern="https://.*" />
+                            
+                        </div>
+                        <label for="meeting_needed" class="label" style="width: 150x;">Add a meeting Link?</label>
+                        <input type="checkbox" name="meeting_needed" id="needed" onclick="validate()">
+                        <br>
+                        <label for="format" class="label">LegFish</label>
+                        <input type="radio" name="format" id="LegFish" checked/>
+                        <label for="format" class="label">Logo</label>
+                        <input type="radio" name="format" id="Logo"/>
+                        <br>
+                        
+                        <button type="reset" class="btn" onclick="onReset()">Reset</button>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <script>
+            document.addEventListener("submit", submitInformationOfForm);
+            function validate(){
+                if (document.getElementById('needed').checked){
+                    document.getElementById("option1").style.display = "block";
+                    document.getElementById("option").style.display = "block";
+                    document.getElementById("option1").required = true;
+
+                } else {
+                    document.getElementById("option1").style.display = "none";
+                    document.getElementById("option").style.display = "none";
+                    document.getElementById("option1").required = false;
+                }
+            }
+            function onReset() {
+                document.getElementById("signature").innerHTML = "";
+                document.getElementById("read_signature").textContent = "";
+                document.getElementById("read_signature").style.display = "none";
+                document.getElementById("option1").style.display = "none";
+                document.getElementById("option").style.display = "none";
+                document.getElementById("option1").required = false;
+            }
+            function submitInformationOfForm() {
+                event.preventDefault();
+                const form = new FormData(event.target);
+                const userSubmission = Object.fromEntries(form);
+                console.log(userSubmission);
+                document.getElementById("read_signature").style.display = "block";
+
+                if (document.getElementById("LegFish").checked) {
+                    let signature1 = `<table><tr><style>@font-face {font-family:futura-pt;src:url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/l?subset_id=2&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/d?subset_id=2&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/a?subset_id=2&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;font-stretch:normal;font-display:auto;}</style><td><div style="display: inline-grid; grid-template-columns: auto; padding: 10px"><div class = "left__content" style="color:#666;text-decoration:none;" target="_blank"><a data-flickr-embed="true" href="https://wholso.me/zine" title="GroupLegfish" target="_blank"><img src="https://live.staticflickr.com/65535/52210813303_cf534b556b_o.png" width="112" height="140" alt="GroupLegfish" target="_blank"></a></div></td></div><td><div style="border-left:2px solid #666;height:150px;position:static;padding:10px"></td></div><td><div class="leftside"><table cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr><div style="font-size:14px;line-height:16px;color:#666;font-weight:bold; font-family:futura-pt;"><b>${userSubmission.name}</b></div></tr><tr><div style="font-size:14px;line-height:16px;color:#666; font-family:futura-pt;">${userSubmission.title}</div></tr>`;
+                    var signature2 =``;
+                    if (document.getElementById("needed").checked){
+                        var signature2 = `
+                        <tr> 
+                            <td nowrap style="border-collapse: collapse; padding-top: 2px;">
+                                <div style="font-size:12px;line-height:16px;color:#666; font-family:futura-pt;">
+                                <a href=" ${userSubmission.meeting_link}" style="color:#666;text-decoration:none;" target="_blank">Schedule a meeting</a></div></td></tr>`;
+                    }
+                    let signature3 = `<tr><td style="border-collapse: collapse; padding-top: 4px;"><table cellpadding="1" cellspacing="0" style="border-collapse:separate;"><tr><td style="border-collapse: separate; padding-right: 1px;"><a href="https://www.instagram.com/wholesomezine/" style="color:#666;text-decoration:none;" target="_blank"><a data-flickr-embed="true" href="https://www.instagram.com/wholesomezine/" title="insta" target="_blank"><img src="https://live.staticflickr.com/65535/52217300721_f833d56d56_t.jpg" width="27" height="27" style="border:1px solid black; border-radius: 3px;"alt="insta"></a></a></td><td style="border-collapse: separate; padding-right: 1px;"><a href="https://www.facebook.com/WholesomeRadio/" style="color:#666;text-decoration:none;" target="_blank"><a data-flickr-embed="true" href="https://www.facebook.com/WholesomeRadio/" title="fb" target="_blank"><img src="https://live.staticflickr.com/65535/52217571479_120426577b_t.jpg" width="27" height="27" style="border:1px solid black; border-radius: 3px;"alt="fb"></a></a></td><td style="border-collapse: separate; padding-right: 1px;"><a href="https://www.youtube.com/channel/UCIK-R8DtCoG58cVXFV9FXOA" style="color:#666;text-decoration:none;" target="_blank"><a data-flickr-embed="true" href="https://www.youtube.com/channel/UCIK-R8DtCoG58cVXFV9FXOA" title="yt" target="_blank"><img src="https://live.staticflickr.com/65535/52216292272_b497a4d7d0_t.jpg" width="27" height="27" style="border:1px solid black; border-radius: 3px;"alt="yt"></a></a></td><td><a href="https://open.spotify.com/__noul__" style="color:#666;text-decoration:none;" target="_blank"><a data-flickr-embed="true" href="https://open.spotify.com/__noul__" title="sp" target="_blank"><img src="https://live.staticflickr.com/65535/52244306180_0d3ec6a4aa_t.jpg" width="27" height="27" style="border:1px solid black; border-radius: 3px;alt="sp"></a></td></tr></table></td></tr><tr><td nowrap style="border-collapse: collapse;"><div style="font-size:10px;color:#666; font-family:Arial, Helvetica, sans-serif;"><a href="https://wholso.me/zine" style="color:#666;text-decoration:none;font-family:futura-pt;" target="_blank">Visit WholesomeZine</a></div></td></tr></table></td></div></tr></table>`;
+                    document.getElementById("signature").innerHTML = signature1 + signature2 + signature3;
+                    document.getElementById("read_signature").textContent = signature1 + signature2 + signature3;
+                } else {
+                    let signature1 = `<style> @font-face { font-family:futura-pt; src:url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/l?subset_id=2&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/d?subset_id=2&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/9b05f3/000000000000000000013365/27/a?subset_id=2&fvd=n4&v=3) format("opentype"); font-weight:400; font-style:normal; font-stretch:normal; font-display:auto; } </style> <table width = "500" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"> <tr> <td nowrap style="border-collapse: collapse; padding-top: 2px;"> <div style="font-size:14px;line-height:16px;color:#666;font-weight:bold; font-family:futura-pt;"> <b> ${userSubmission.name} </b> </div> </td> </tr> <tr> <td> <div style="font-size:14px;line-height:16px;color:#666; font-family:futura-pt;"> <b> ${userSubmission.title} </b> </div> </td> </tr> <tr> <td nowrap style="border-collapse: collapse; padding-top: 2px;"> <div style="font-size:14px;line-height:16px;color:#666; font-family:futura-pt;"> <b> ${userSubmission.phone} </b> </div> </td> </tr>`;
+                    var signature2 =``;
+                    if (document.getElementById("needed").checked){
+                        var signature2 = `
+                        <tr> <td nowrap style="border-collapse: collapse; padding-top: 2px;"> <div style="font-size:12px;line-height:16px;color:#666; font-family:futura-pt;"> <a href="${userSubmission.meeting_link}" style="color:#666;text-decoration:none;" target="_blank"> Schedule a meeting </a> </div> </td> </tr> `;
+                    }
+                    let signature3 = `<tr> <td style="padding-top: 6px;"> <a href="https://wholso.me/zine" style="color:#666;text-decoration:none;" target="_blank"> <a data-flickr-embed="true" href="https://wholso.me/zine" title="WholesomeLogo"><img src="https://live.staticflickr.com/65535/52215261260_24372a163f_o.png" width="194" height="40"alt="WholesomeLogo"> </a> </a> </td> </tr> <tr> <td style="border-collapse: separate;" width="50px"> <table cellpadding="1" cellspacing="0" style="border-collapse:separate;" > <tr> <td style="border-collapse: separate; padding-right: 1px;"> <a href="https://www.youtube.com/channel/UCIK-R8DtCoG58cVXFV9FXOA" style="color:#666;text-decoration:none;" target="_blank"> <a data-flickr-embed="true" href="https://www.youtube.com/channel/UCIK-R8DtCoG58cVXFV9FXOA" title="yt" target="_blank"><img src="https://live.staticflickr.com/65535/52216292272_b497a4d7d0_t.jpg" width="30" height="30" alt="yt"></a> </a> </td> <td style="border-collapse: separate; padding-right: 1px;"> <a href="https://www.facebook.com/WholesomeRadio/" style="color:#666;text-decoration:none;" target="_blank"> <a data-flickr-embed="true" href="https://www.facebook.com/WholesomeRadio/" title="fb" target="_blank"><img src="https://live.staticflickr.com/65535/52217571479_120426577b_t.jpg" width="30" height="30" alt="fb"></a> </a> </td><td style="border-collapse: separate; padding-right: 1px;"><a href="https://www.instagram.com/wholesomezine/" style="color:#666;text-decoration:none; " target="_blank"><a data-flickr-embed="true" href="https://www.instagram.com/wholesomezine/" title="insta" target="_blank"><img src="https://live.staticflickr.com/65535/52217300721_f833d56d56_t.jpg" width="30" height="30" alt="insta"></a></a></td><td style="border-collapse: separate; padding-right: 1px;"><a href="https://open.spotify.com/__noul__" style="color:#666;text-decoration:none; " target="_blank"><a data-flickr-embed="true" href="https://open.spotify.com/__noul__" title="sp" target="_blank"><img src="https://live.staticflickr.com/65535/52244306180_0d3ec6a4aa_t.jpg" width="30" height="30" alt="sp"></a></a></td></tr></table> </td> </tr> </table>`;
+                    document.getElementById("signature").innerHTML = signature1 + signature2 + signature3;
+                    document.getElementById("read_signature").textContent = signature1 + signature2 + signature3;
+                }
+            }
+        </script>
+    </body>
+</html>
